@@ -1,12 +1,13 @@
 package tests;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.io.File;
+
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 
@@ -64,14 +65,9 @@ public class StudentRegistrationFormTests {
     $("#submit").click();
 
     // Проверка регистрационных данных в попапе
-    $(".table-responsive").shouldHave(Condition.text("Arkadiy Garanin"),
-        Condition.text("arkgaranin@gmail.com"), Condition.text("Male"), Condition.text("9772601157"),
-        Condition.text("26 April,1990"), Condition.text("English, Computer Science"),
-        Condition.text("Sports, Reading, Music"), Condition.text("Bart.png"),
-        Condition.text("Moscow region, Odintsovo city, Severnaya street"), Condition.text("Haryana Karnal"));
-
-    // Закрытие попапа с регистрационными данными
-    $("#closeLargeModal").click();
+    $(".table-responsive").shouldHave(text("Arkadiy Garanin"), text("arkgaranin@gmail.com"), text("Male"),
+        text("9772601157"), text("26 April,1990"), text("English, Computer Science"), text("Sports, Reading, Music"),
+        text("Bart.png"), text("Moscow region, Odintsovo city, Severnaya street"), text("Haryana Karnal"));
   }
 
   /**
