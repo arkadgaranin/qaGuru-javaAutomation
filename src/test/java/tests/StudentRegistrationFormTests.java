@@ -17,21 +17,13 @@ public class StudentRegistrationFormTests {
   static void configTests() {
     Configuration.startMaximized = true;
     Configuration.browser = "chrome";
-  }
-
-  @BeforeEach
-  void openDemoQaPage() {
-    open("https://demoqa.com/automation-practice-form");
-  }
-
-  @AfterEach
-  void closeBrowser() {
-    closeWebDriver();
+    Configuration.baseUrl = "https://demoqa.com";
   }
 
   @Test
-  void FillingRegistrationFormTest() {
+  void fillingRegistrationFormTest() {
 
+    open("/automation-practice-form");
     $("#firstName").setValue("Arkadiy");
     $("#lastName").setValue("Garanin");
     $("#userEmail").setValue("arkgaranin@gmail.com");
@@ -62,7 +54,7 @@ public class StudentRegistrationFormTests {
     $("#react-select-4-input").setValue("Ka").pressEnter();
 
     // Submit Registration Form
-    $("#submit").click();
+    $("#submit").scrollTo().click();
 
     // Проверка регистрационных данных в попапе
     $(".table-responsive").shouldHave(text("Arkadiy Garanin"), text("arkgaranin@gmail.com"), text("Male"),
