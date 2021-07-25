@@ -1,20 +1,18 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import java.io.File;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class StudentRegistrationFormTests {
 
   @BeforeAll
-  static void configTests() {
+  static void setup() {
     Configuration.startMaximized = true;
     Configuration.browser = "chrome";
     Configuration.baseUrl = "https://demoqa.com";
@@ -27,7 +25,7 @@ public class StudentRegistrationFormTests {
     $("#firstName").setValue("Arkadiy");
     $("#lastName").setValue("Garanin");
     $("#userEmail").setValue("arkgaranin@gmail.com");
-    $("[for='gender-radio-1']").click();
+    $("[for='gender-radio-1']").click();//Или так: $("[name=gender][value=Other]").parent().click();
     $("#userNumber").setValue("9772601157");
 
     // Заполнение даты рождения кликами
